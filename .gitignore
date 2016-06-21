@@ -2,3 +2,7 @@
 .gff
 .bed
 .bt2
+
+*.bt2
+
+*.fa
