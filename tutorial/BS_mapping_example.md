@@ -51,7 +51,6 @@ bismark -p 2 --bam --bowtie2 Athal colWT_trim.truncated.gz
 
 
 
-
 ## Data cleanup and processing
 
 After we're done with mapping our data, we need to process our BAMs. We ned to do the following tasks:
@@ -61,7 +60,7 @@ After we're done with mapping our data, we need to process our BAMs. We ned to d
 3. Make methylation call files
 
 
-Firstly to sort and deduplicate. One of the most frustrating and widely-used Bioinformatics tools used today is samtools. I say frustrating because its not exactly the quickest program in the world, and lacks some multi-threading options which would allow scalability to larger systems.
+Firstly to sort and deduplicate. One of the most widely-used Bioinformatics tools used today is samtools. And it can be frustrating to use because it lacks multi-threading options which would allow scalability to larger systems.
 
 However now we can use sambamba which fills those needs. Lets use it to sort our bismark-made BAMs and mark and remove duplicates.
 

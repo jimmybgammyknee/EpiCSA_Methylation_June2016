@@ -4,13 +4,13 @@
 
 Tutorial materials for this section is found at my github account:
 
-
+	https://github.com/jimmybgammyknee/EpiCSA_Methylation_June2016
 
 This part of the differential methylation pipeline is mostly done in R. Much like Ben's methyl array tutorial, you can do all of this work in Rstudio.
 
 Due to the time it takes to create all our nessessary files, I have done the before work for you and all you need to do is download the following file from my University CloudStor+ account:
 
-
+	https://cloudstor.aarnet.edu.au/plus/index.php/s/RlS5a9Xn3kwGeqx
 
 ## Annotations
 
@@ -61,29 +61,27 @@ Ok now we're ready to rock. Lets load our required libraries and read our files 
 
 From a list of these files, we now can make data objects in R, which is a data structure that methylkit uses to analyse the data.
 
-	CG <- read(cg.list,
+	CG <- methRead(cg.list,
          			sample.id=list("Control", "Test"),
          			assembly = "Athal10",
          			header = TRUE,
          			context = "CpG",
          			treatment = c(0, 1))
-    CHG <- read(chg.list,
+    CHG <- methRead(chg.list,
          			sample.id=list("Control", "Test"),
          			assembly = "Athal10",
          			header = TRUE,
          			context = "CHG",
          			treatment = c(0, 1))
-    CHH <- read(chh.list,
+    CHH <- methRead(chh.list,
          			sample.id=list("Control", "Test"),
          			assembly = "Athal10",
          			header = TRUE,
          			context = "CHH",
          			treatment = c(0, 1))
 
-As part the initial part of the pipeline, we should have a quick check of the samples to see how they look. Im only going to look at CpG's in the following examples, but you can try all the contexts to see how they look afterwards
+As part the initial part of the pipeline, we should have a quick check of the samples to see how they look. Im only going to look at CpG's in the following examples, but you can try all the contexts to see how they look afterwards.
 
-    getMethylationStats(CG[[1]], plot = TRUE, both.strands = FALSE)
-    getMethylationStats(CG[[2]], plot = TRUE, both.strands = FALSE)
     
     getCoverageStats(CG[[1]], plot = TRUE, both.strands = FALSE)
     getCoverageStats(CG[[2]], plot = TRUE, both.strands = FALSE)
@@ -100,7 +98,7 @@ Now its time to do the differential methylation analysis. First we need to unite
 	# On either filtered set or normal set
 	meth.CG <- unite(CG)
 	
-We can now plot the correlation of each sample and cluster or create a PCA with the samples. This is a little overkill at the moment considering we only have two samples which we are expecting to be quite different. However, ideally you will be using replicates, so this step is crucial to see how much variation you have within you biological or technical replicates.
+We can now plot the correlation of each sample and cluster or create a PCA with the samples. This is a little overkill at the moment considering we only have two samples which we are expecting to be quite different. However, ideally you will be using replicates, so this step is crucial to see how much variation you have within you biological or technical replicates. We wont run through these today
 
 	getCorrelation(meth.CG, plot = T)
 
